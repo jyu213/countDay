@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CountDay</title>
+
+  </head>
+  <body>
+    <div id="day" onClick="toggle(1)"></div>
+    <input id="input" value='' style="display: none">
+
+    <script>
+      window.onload = function() {
+        var el = document.getElementById('day')
+        var input = document.getElementById('input')
+        var val = localStorage.getItem('key') || 0
+        var time = localStorage.getItem('time') || +new Date()
+
+        function toggle(b) {
+          if (b) {
+            el.style.display = 'none'
+            input.style.display = 'block'
+          } else {
+            el.style.display = 'block'
+            input.style.display = 'none'
+          }
+        }
+        function setValue(val, time) {
+          el.innerHTML = val
+          input.value = val
+          localStorage.setItem('key', value)
+          localStorage.setItem('time', time)
+        }
+
+        input.addEventListener('blur', (e) => {
+          const value = e.target.value
+          toggle(0)
+          setValue(val, time)
+        })
+
+        setValue(val, time)
+
+        setInterval(() => {
+          const d = +new Date()
+          if (`${time.getFullYear()}-${time.getMonth()}-${time.getDate()}` !==
+            `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`) {
+              setValue(val > 0 ? val - 1 : 0, d)
+            }
+        }, 10 * 60 * 1000)
+      }
+    </script>
+  </body>
+</html>
