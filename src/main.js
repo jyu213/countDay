@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron');
+const electron = require('electron')
+const { app, BrowserWindow } = electron;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -10,12 +11,17 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 let mainWindow;
 
 const createWindow = () => {
+  const { width } = electron.screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 250,
-    height: 250,
+    width: 100,
+    height: 50,
+    x: width - 100,
+    y: 0,
+    frame: false,
   });
 
+  mainWindow.setAlwaysOnTop(true);
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
