@@ -49,6 +49,7 @@
           if (b) {
             el.style.display = 'none'
             input.style.display = 'block'
+            input.focus()
           } else {
             el.style.display = 'block'
             input.style.display = 'none'
@@ -75,11 +76,11 @@
           const d = new Date()
 
           if (time.getFullYear() + '-' + time.getMonth() + '-' + time.getDate() !==
-            d.getFullYear() + '-' + d.time.getMonth() + '-' + d.getDate()
+            d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()
             ) {
               setValue(val > 0 ? val - 1 : 0, d)
             }
-        }, 10 * 60 * 1000)
+        }, 1 * 60 * 1000)
       }
     </script>
   </body>
