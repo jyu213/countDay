@@ -72,13 +72,16 @@
         setValue(val, time)
 
         setInterval(() => {
+          var val = localStorage.getItem('key') || 0
+          var time = localStorage.getItem('time') * 1 || +new Date()
+
           time = new Date(time)
           const d = new Date()
 
           if (time.getFullYear() + '-' + time.getMonth() + '-' + time.getDate() !==
             d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()
             ) {
-              setValue(val > 0 ? val - 1 : 0, d)
+              setValue(val > 0 ? val - 1 : 0, d.getTime())
             }
         }, 1 * 60 * 1000)
       }
